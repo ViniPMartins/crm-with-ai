@@ -1,0 +1,9 @@
+site_name: "Documentação Contratos"
+
+theme:
+  name: "material"
+
+plugins:
+  - search
+  - mkdocstrings:
+      default_handler: python
