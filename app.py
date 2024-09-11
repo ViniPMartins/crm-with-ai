@@ -3,6 +3,8 @@ from contrato import Vendas
 
 from pydantic import ValidationError
 
+from database import salvar_no_postgres
+
 def main():
 
     st.title("Sistema de CRM e Vendas da ZapFlow")
@@ -23,8 +25,13 @@ def main():
                 quantidade=quantidade,
                 produto=produto
             )
-            st.write("Informações: ")
-            st.write(venda)
+            #st.write("Informações: ")
+            #st.write(venda)
+            status, mensagem = salvar_no_postgres(venda)
+            if status:
+                st.success("Dados salvos com sucesso no banco de dados!")
+            else:
+                st.error(mensagem)
         except ValidationError as e:
             st.error(f"Erro encontrado: {e}")
 

@@ -39,6 +39,6 @@ def salvar_no_postgres(dados: Vendas):
         conn.commit()
         cursor.close()
         conn.close()
-        st.success("Dados salvos com sucesso no banco de dados!")
+        return True, "Dados salvos"
     except Exception as e:
-        st.error(f"Erro ao salvar no banco de dados: {e}")
+        return False, f"Erro ao salvar no banco de dados: {e}"
